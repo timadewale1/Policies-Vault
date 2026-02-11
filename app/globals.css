@@ -1,26 +1,542 @@
-@import "tailwindcss";
+:root{
+  /* pulled to match your video vibe */
+  --bg: #e9e2d8;
+  --surface: #efe8df;
+  --sage: #cfd9a7;
+  --text: #2f2420;
+  --muted: #6b5b55;
+  --brown: #3b2722;
+  --brown-2: #2b1b17;
+  --border: rgba(47,36,32,.16);
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --radius-xl: 26px;
+  --radius-lg: 18px;
+
+  --container: 1120px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+*{ box-sizing:border-box; }
+html,body{ height:100%; }
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+   font-size: 16px;
+  font-family: var(--font-sans), system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+a{ color:inherit; text-decoration:none; }
+button{ font-family: inherit; }
+
+.container{
+  width: min(var(--container), calc(100% - 48px));
+  margin: 0 auto;
+}
+
+.h-serif{ font-family: var(--font-serif), Georgia, "Times New Roman", serif; }
+
+.kicker{
+  font-size: 15px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+hr.sep{
+  border:0;
+  border-top:1px solid var(--border);
+  margin: 0;
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding: 12px 18px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: var(--brown);
+  color: #f6f0e8;
+  font-size: 11px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  cursor:pointer;
+}
+.btn:hover{ filter: brightness(1.03); }
+
+.section{
+  padding: 86px 0;
+}
+
+.card{
+  background: var(--surface);
+  border: 1px solid var(--border);
+  overflow:hidden;
+}
+
+.grid-2{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.pillRow{
+  display:flex;
+  justify-content:center;
+  gap: 14px;
+  margin-top: 26px;
+}
+
+.pill{
+  appearance:none;
+  border:1px solid rgba(47,36,32,.35);
+  background: transparent;
+  color: rgba(47,36,32,.75);
+  padding: 10px 22px;
+  font-size: 15px;
+  letter-spacing: .02em;
+  cursor: pointer;
+}
+
+.pillActive{
+  background: var(--brown);
+  color: #f6f0e8;
+  border-color: var(--brown);
+}
+
+.sagePanel{
+  background: var(--sage);
+  border-top: 1px solid rgba(47,36,32,.12);
+  border-bottom: 1px solid rgba(47,36,32,.12);
+}
+
+
+@media (max-width: 900px){
+  .grid-2{ grid-template-columns: 1fr; }
+  .section{ padding: 64px 0; }
+}
+
+/* ---------- Responsive type helpers (homepage) ---------- */
+.heroTitle{
+  font-size: 92px;
+  line-height: .95;
+  letter-spacing: .02em;
+}
+
+.heroSub{
+  font-size: 18px;
+  line-height: 1.8;
+  max-width: 760px;
+}
+
+.sectionTitle{
+  font-size: 64px;
+  line-height: 1.02;
+}
+
+.sectionLead{
+  font-size: 14px;
+  line-height: 1.85;
+  max-width: 380px;
+}
+
+.heroImg{
+  height: 380px;
+}
+
+/* Vision right column "divider" behaviour */
+.visionRight{
+  border-left: 1px solid var(--border);
+  padding-left: 30px;
+}
+
+.letsConnectTitle{
+  font-size: 92px;
+  line-height: .95;
+  letter-spacing: .02em;
+}
+
+.letsConnectSub{
+  font-size: 18px;
+  line-height: 1.8;
+  max-width: 760px;
+}
+
+/* ---------- Mobile tweaks ---------- */
+@media (max-width: 900px){
+  .container{
+    width: min(var(--container), calc(100% - 28px)); /* tighter side padding */
+  }
+
+  .heroTitle{
+    font-size: 45px;
+    line-height: 1.02;
+  }
+
+  .heroSub{
+    font-size: 14px;
+    max-width: 520px;
+  }
+
+  .heroImg{
+    height: 240px;
+  }
+
+  .sectionTitle{
+    font-size: 44px;
+    line-height: 1.05;
+  }
+
+  .sectionLead{
+    max-width: 100%;
+    font-size: 14px;
+  }
+
+  .visionRight{
+    border-left: none;
+    border-top: 1px solid var(--border);
+    padding-left: 0;
+    padding-top: 22px;
+    margin-top: 12px;
+  }
+
+  .letsConnectTitle{
+    font-size: 56px;
+    line-height: 1.02;
+  }
+
+  .letsConnectSub{
+    font-size: 14px;
+    max-width: 520px;
+    white-space: normal;
+  }
+
+  /* buttons row wrap */
+  .pillRow{
+    flex-wrap: wrap;
+    gap: 10px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ---------- Focus Areas (rows) ---------- */
+.focusHeader{
+  display:flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: flex-start;
 }
+
+.focusRow{
+  display:grid;
+  grid-template-columns: 90px 1.2fr 1fr;
+  gap: 24px;
+  padding: 40px 0;
+  align-items: center;
+}
+
+/* ---------- Perspectives ---------- */
+.perspectivesGrid{
+  display:grid;
+  grid-template-columns: 1.05fr 1fr;
+  min-height: 420px;
+}
+
+.perspectivesLeft{
+  padding: 42px;
+}
+
+.perspectivesImg{
+  min-height: 380px;
+  background:
+    linear-gradient(0deg, rgba(0,0,0,.08), rgba(0,0,0,0)),
+    url('/focus.jpg') center/cover no-repeat;
+    margin-bottom: 15px;
+}
+
+/* ---------- Mobile tweaks ---------- */
+@media (max-width: 900px){
+  /* Focus header stacks */
+  .focusHeader{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* Focus row becomes: number on top, then title, then description */
+  .focusRow{
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding: 28px 0;
+  }
+
+  /* Make the big title smaller on mobile */
+  .focusTitle{
+    font-size: 38px !important;
+    line-height: 1.08 !important;
+  }
+
+  /* Perspectives stack */
+  .perspectivesGrid{
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .perspectivesLeft{
+    padding: 26px;
+  }
+
+  .perspectivesH3{
+    font-size: 48px !important;
+    line-height: 1.02 !important;
+  }
+
+  .perspectivesImg{
+    min-height: 240px;
+  }
+
+  /* Featured card: full width on mobile */
+  .featuredBox{
+    max-width: 100% !important;
+  }
+}
+
+/* ---------- About page ---------- */
+.aboutTitle{ font-size: 96px; }
+.aboutSub{ font-size: 18px; max-width: 820px; }
+
+.aboutBEWrap{ padding: 38px; }
+.aboutBEGrid{
+  display:grid;
+  grid-template-columns: 1fr 1.05fr;
+  gap: 28px;
+  align-items: stretch;
+}
+.aboutBEImg{ min-height: 500px; }
+.aboutBETitle{ font-size: 62px; line-height: 1.05; }
+.aboutBEText{ font-size: 17px; line-height: 1.9; }
+
+.aboutFocusTitle{ font-size: 82px; }
+
+.aboutExpPanel{
+  min-height: 520px;
+  display:grid;
+  place-items:center;
+  text-align:center;
+  padding: 40px;
+}
+.aboutExpTitle{ font-size: 92px; }
+.aboutExpSub{ font-size: 16px; }
+
+/* ---------- Mobile ---------- */
+@media (max-width: 900px){
+  .aboutTitle{ font-size: 56px; }
+  .aboutSub{ font-size: 14px; max-width: 560px; }
+
+  .aboutBEWrap{ padding: 22px; }
+  .aboutBEGrid{ grid-template-columns: 1fr; gap: 18px; }
+
+  .aboutBEImg{ min-height: 240px; } /* keeps it neat */
+  .aboutBETitle{ font-size: 44px; }
+  .aboutBEText{ font-size: 14px; }
+
+  .aboutFocusTitle{ font-size: 48px; margin-bottom: 22px !important; }
+
+  .aboutExpPanel{ min-height: 360px; padding: 26px; }
+  .aboutExpTitle{ font-size: 56px; }
+  .aboutExpSub{ font-size: 13px; }
+}
+
+/* ---------- About Focus Grid ---------- */
+.aboutFocusWrap{ margin-top: 42px; }
+
+.aboutFocusGrid{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.aboutFocusCard{
+  background: var(--sage);
+  padding: 26px;
+  min-height: 168px;
+  border: 1px solid var(--border);
+}
+
+.aboutFocusCardTitle{
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 10px;
+}
+
+.aboutFocusCardDesc{
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+/* ---------- Publications ---------- */
+.pubTitle{ font-size: 80px; }
+.pubSub{ font-size: 15px; max-width: 820px; }
+
+/* ---------- Responsive breakpoints ---------- */
+@media (max-width: 900px){
+  /* About Focus Grid */
+  .aboutFocusWrap{ margin-top: 24px; }
+  .aboutFocusGrid{ grid-template-columns: 1fr; gap: 14px; }
+  .aboutFocusCard{ padding: 18px; min-height: auto; }
+  .aboutFocusCardTitle{ font-size: 18px; }
+  .aboutFocusCardDesc{ font-size: 14px; }
+
+  /* Publications */
+  .pubTitle{ font-size: 56px; }
+  .pubSub{ font-size: 14px; max-width: 560px; }
+}
+
+/* Optional: nicer 2-col layout on medium screens (tablets) */
+@media (min-width: 650px) and (max-width: 900px){
+  .aboutFocusGrid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* ---------- Research page ---------- */
+.researchTitle{ font-size: 96px; }
+.researchSub{ font-size: 19px; max-width: 860px; }
+
+.researchSoonWrap{
+  min-height: 720px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+.researchSoonText{ font-size: 20px; }
+
+.researchApproachGrid{
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 34px;
+  align-items: center;
+}
+.researchApproachTitle{ font-size: 64px; line-height: 1.05; }
+.researchApproachP{ font-size: 18px; line-height: 1.9; max-width: 520px; }
+.researchImg{ min-height: 560px; }
+
+/* ---------- Contact page ---------- */
+.contactTitle{ font-size: 80px; }
+.contactSub{ font-size: 18px; max-width: 900px; }
+
+.contactSageWrap{ padding: 28px; }
+.contactGrid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 34px;
+  align-items: start;
+}
+
+.contactFormCard{
+  background: var(--bg);
+  border: 1px solid rgba(47,36,32,.18);
+  padding: 28px;
+  min-height: 670px;
+}
+
+.contactRightTitle{ font-size: 38px; }
+.contactImg{ min-height: 240px; }
+
+/* ---------- Mobile ---------- */
+@media (max-width: 900px){
+  /* Research */
+  .researchTitle{ font-size: 56px; }
+  .researchSub{ font-size: 14px; max-width: 560px; }
+
+  .researchSoonWrap{ min-height: 420px; }
+  .researchSoonText{ font-size: 14px; }
+
+  .researchApproachGrid{ grid-template-columns: 1fr; gap: 18px; }
+  .researchApproachTitle{ font-size: 44px; }
+  .researchApproachP{ font-size: 14px; max-width: 100%; }
+  .researchImg{ min-height: 240px; }
+
+  /* Contact */
+  .contactTitle{ font-size: 56px; }
+  .contactSub{ font-size: 14px; max-width: 560px; }
+
+  .contactSageWrap{ padding: 20px; }
+  .contactGrid{ grid-template-columns: 1fr; gap: 18px; }
+
+  .contactFormCard{ min-height: auto; padding: 20px; } /* ✅ remove huge height on phones */
+  .contactRightTitle{ font-size: 28px; }
+  .contactImg{ min-height: 200px; }
+}
+
+/* ---------- Navbar ---------- */
+.navbar{
+  padding: 22px 0;
+  border-bottom: 1px solid var(--border); /* ✅ bottom border */
+  position: relative;
+  z-index: 50;
+  background: var(--bg);
+}
+
+.navInner{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navLinks{
+  display: flex;
+  gap: 22px;
+  font-size: 15px;
+  color: var(--muted);
+}
+
+.navLink{
+  padding: 6px 4px;
+}
+
+.hamburger{
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.hamburger span{
+  width: 22px;
+  height: 1.5px;
+  background: var(--text);
+}
+
+/* Mobile menu dropdown */
+.mobileMenu{
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  padding: 18px 0;
+  gap: 12px;
+}
+
+.mobileLink{
+  padding: 8px 24px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px){
+  .navLinks{
+    display: none; /* hide desktop links */
+  }
+
+  .hamburger{
+    display: flex;
+  }
+}
+
+
+
+
+
+
