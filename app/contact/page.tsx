@@ -134,19 +134,14 @@ export default function ContactPage() {
                   </div>
 
                   <p style={rightP}>
-                    I&apos;m always interested in discussing research collaborations, policy analysis projects,
-                    or speaking opportunities related to international development and institutional governance.
+                    I’m always interested in discussing research collaborations, policy analysis projects, and development policy
+                    questions. Whether you’re a researcher, practitioner, policymaker, or simply someone interested in how development
+                    policy works in practice - I’d love to hear from you.
                   </p>
 
                   <p style={rightP}>
-                    Whether you&apos;re a fellow researcher, policy maker, or simply interested in my work,
-                    feel free to reach out. I typically respond within 2-3 business days.
+                    I’m particularly interested in connecting with:
                   </p>
-
-                  <div style={{ height: 14 }} />
-                  <div className="h-serif" style={{ fontSize: 28, fontWeight: 700 }}>
-                    Areas of Interest
-                  </div>
 
                   <ul
                     style={{
@@ -157,12 +152,15 @@ export default function ContactPage() {
                       fontSize: 18,
                     }}
                   >
-                    <li>Research collaborations</li>
-                    <li>Speaking engagements</li>
-                    <li>Policy consultations</li>
-                    <li>Media inquiries</li>
-                    <li>Academic partnerships</li>
+                    <li>Think tanks and research institutions</li>
+                    <li>International development organizations</li>
+                    <li>Climate finance and sustainability practitioners</li>
+                    <li>Fellow researchers and students</li>
                   </ul>
+
+                  <p style={{ marginTop: 14, color: "rgba(47,36,32,.72)", lineHeight: 1.65 }}>
+                    Reach out via the contact form. I typically respond within 2-3 business days.
+                  </p>
 
                   <div style={{ height: 22 }} />
 

@@ -309,9 +309,9 @@ hr.sep{
   gap: 28px;
   align-items: stretch;
 }
-.aboutBEImg{ min-height: 500px; }
+.aboutBEImg{ min-height: 720px; }
 .aboutBETitle{ font-size: 62px; line-height: 1.05; }
-.aboutBEText{ font-size: 17px; line-height: 1.9; }
+.aboutBEText{ font-size: 15px; line-height: 1.9; }
 
 .aboutFocusTitle{ font-size: 82px; }
 

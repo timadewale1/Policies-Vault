@@ -1,5 +1,4 @@
 import Link from "next/link";
-import FocusAreasList from "@/components/FocusAreasList";
 import PerspectivesCard from "@/components/PerspectivesCard";
 import {
   FadeOutOnScroll,
@@ -20,8 +19,7 @@ export default function HomePage() {
   </h1>
 </FadeOutOnScroll>
           <p className="heroSub" style={{ margin: "34px auto 18px", color: "var(--muted)", fontWeight: 700 }}>
-  Exploring international development institutions and governance through rigorous analysis, thoughtful commentary,
-  and evidence-based research.
+  Policy analysis and commentary on sustainable development, governance, and institutional effectiveness - examining how international commitments translate to real-world impact
 </p>
 
            <Link className="btn" href="/publications">
@@ -49,10 +47,10 @@ export default function HomePage() {
         <div className="container grid-2" style={{ alignItems: "start" }}>
           <RevealWhileInView from="left">
             <div>
-              <div className="kicker">THE VISION</div>
+              <div className="kicker">WHY THIS EXISTS</div>
 
               <h2 className="h-serif sectionTitle" style={{ margin: "12px 0 16px" }}>
-  Rigorous<br />Inquiry,<br />Global<br />Impact.
+  Rigorous Thinking. Real-World Relevance
 </h2>
 
 
@@ -67,14 +65,13 @@ export default function HomePage() {
 
               <p
                 style={{
-                  maxWidth: 400,
+                  maxWidth: 520,
                   color: "var(--muted)",
                   lineHeight: 1.85,
                   fontSize: 18,
                 }}
               >
-                Navigating the complexities of international development requires clarity,
-                evidence, and institutional understanding.
+                Development policy shapes billions of lives. But the gap between what’s promised in international agreements and what actually happens on the ground is where the real story lives. Policies Vault examines that gap - across climate finance, digital development, ESG governance, and institutional reform
               </p>
             </div>
           </RevealWhileInView>
@@ -83,44 +80,47 @@ export default function HomePage() {
             <StaggerUpWhileInView baseDelay={0.12}>
               <StaggerItemUp>
                 <div>
-                  <div style={{ display: "flex", gap: 14, alignItems: "baseline" }}>
-                    <div className="kicker">01</div>
-                    <div className="h-serif" style={{ fontSize: 32, fontWeight: 600 }}>
-                      Institutional Analysis
-                    </div>
+                  <div style={{ marginBottom: 12 }}>
+                    <div className="kicker">THREE PILLARS</div>
                   </div>
-                  <p style={{ marginTop: 10, color: "var(--muted)", lineHeight: 1.9, fontSize: 18 }}>
-                    We delve deep into the machinery of development organizations, understanding not just
-                    what they do, but how they function, evolve, and interact with the world.
-                  </p>
-                </div>
-              </StaggerItemUp>
 
-              <StaggerItemUp>
-                <div style={{ marginTop: 18 }}>
-                  <div style={{ display: "flex", gap: 14, alignItems: "baseline" }}>
-                    <div className="kicker">02</div>
-                    <div className="h-serif" style={{ fontSize: 32, fontWeight: 600 }}>
-                      Evidence-Based Policy
+                  <div style={{ display: "grid", gap: 12 }}>
+                    <div>
+                      <div style={{ display: "flex", gap: 14, alignItems: "baseline" }}>
+                        <div className="kicker">01</div>
+                        <div className="h-serif" style={{ fontSize: 22, fontWeight: 700 }}>
+                          Evidence Over Rhetoric
+                        </div>
+                      </div>
+                      <p style={{ marginTop: 8, color: "var(--muted)", lineHeight: 1.9, fontSize: 16 }}>
+                        Analysis that moves beyond headlines and press releases - examining data, governance structures, and implementation mechanisms to understand what’s working and what isn’t.
+                      </p>
+                    </div>
+
+                    <div>
+                      <div style={{ display: "flex", gap: 14, alignItems: "baseline" }}>
+                        <div className="kicker">02</div>
+                        <div className="h-serif" style={{ fontSize: 22, fontWeight: 700 }}>
+                          Bridging Global and Local
+                        </div>
+                      </div>
+                      <p style={{ marginTop: 8, color: "var(--muted)", lineHeight: 1.9, fontSize: 16 }}>
+                        International policy commitments mean little if they don’t translate to practice. The focus here is on the disconnect between what gets agreed in conference halls and what reaches the communities policy is meant to serve.
+                      </p>
+                    </div>
+
+                    <div>
+                      <div style={{ display: "flex", gap: 14, alignItems: "baseline" }}>
+                        <div className="kicker">03</div>
+                        <div className="h-serif" style={{ fontSize: 22, fontWeight: 700 }}>
+                          Independent Analysis
+                        </div>
+                      </div>
+                      <p style={{ marginTop: 8, color: "var(--muted)", lineHeight: 1.9, fontSize: 16 }}>
+                        Policies Vault is independent. The analysis reflects what evidence suggests - not what institutions want to hear.
+                      </p>
                     </div>
                   </div>
-                  <p style={{ marginTop: 10, color: "var(--muted)", lineHeight: 1.9, fontSize: 18 }}>
-                    Moving beyond rhetoric, our work is grounded in empirical research, data-driven insights,
-                    and practical policy recommendations.
-                  </p>
-                </div>
-              </StaggerItemUp>
-              <StaggerItemUp>
-                <div style={{ marginTop: 18 }}>
-                  <div style={{ display: "flex", gap: 14, alignItems: "baseline" }}>
-                    <div className="kicker">03</div>
-                    <div className="h-serif" style={{ fontSize: 32, fontWeight: 600 }}>
-                      Global Perspective
-                    </div>
-                  </div>
-                  <p style={{ marginTop: 10, color: "var(--muted)", lineHeight: 1.9, fontSize: 18  }}>
-                    With a focus that spans continents, we bring a comparative perspective to development challenges, identifying universal patterns while respecting local nuances.
-                  </p>
                 </div>
               </StaggerItemUp>
             </StaggerUpWhileInView>
@@ -130,8 +130,130 @@ export default function HomePage() {
 
       <hr className="sep" />
 
-      {/* FOCUS AREAS (separate section, 3 items, like your screenshot) */}
-      <FocusAreasList />
+      {/* FOCUS AREAS + THE WORK (side by side) */}
+      <section className="section">
+        <div className="container grid-2" style={{ alignItems: "start" }}>
+          <RevealWhileInView from="left">
+            <div>
+              <div className="kicker">FOCUS AREAS</div>
+              <h2 className="h-serif sectionTitle" style={{ margin: "12px 0 16px" }}>
+                Analysis spanning several interconnected policy domains.
+              </h2>
+
+              <StaggerUpWhileInView baseDelay={0.08}>
+                <StaggerItemUp>
+                  <div>
+                    <div style={{ display: "flex", gap: 14, alignItems: "baseline" }}>
+                      <div className="kicker">01</div>
+                      <div className="h-serif" style={{ fontSize: 22, fontWeight: 700 }}>
+                        Climate Finance & Sustainability
+                      </div>
+                    </div>
+                    <p style={{ marginTop: 8, color: "var(--muted)", lineHeight: 1.9 }}>
+                      Examining how climate commitments are funded, governed, and implemented - and where the gaps between ambitious pledges and delivery mechanisms emerge.
+                    </p>
+                  </div>
+                </StaggerItemUp>
+
+                <StaggerItemUp>
+                  <div>
+                    <div style={{ display: "flex", gap: 14, alignItems: "baseline" }}>
+                      <div className="kicker">02</div>
+                      <div className="h-serif" style={{ fontSize: 22, fontWeight: 700 }}>
+                        Gender & Development
+                      </div>
+                    </div>
+                    <p style={{ marginTop: 8, color: "var(--muted)", lineHeight: 1.9 }}>
+                      Analyzing how governance frameworks address - or systematically overlook - gender equity across climate adaptation, finance, and institutional design.
+                    </p>
+                  </div>
+                </StaggerItemUp>
+
+                <StaggerItemUp>
+                  <div>
+                    <div style={{ display: "flex", gap: 14, alignItems: "baseline" }}>
+                      <div className="kicker">03</div>
+                      <div className="h-serif" style={{ fontSize: 22, fontWeight: 700 }}>
+                        ESG & Digital Technology
+                      </div>
+                    </div>
+                    <p style={{ marginTop: 8, color: "var(--muted)", lineHeight: 1.9 }}>
+                      Investigating how environmental, social, and governance frameworks intersect with digital innovation - and what this means for development outcomes.
+                    </p>
+                  </div>
+                </StaggerItemUp>
+
+                <StaggerItemUp>
+                  <div>
+                    <div style={{ display: "flex", gap: 14, alignItems: "baseline" }}>
+                      <div className="kicker">04</div>
+                      <div className="h-serif" style={{ fontSize: 22, fontWeight: 700 }}>
+                        Global Governance & Institutional Effectiveness
+                      </div>
+                    </div>
+                    <p style={{ marginTop: 8, color: "var(--muted)", lineHeight: 1.9 }}>
+                      Exploring how international development institutions function, evolve, and where policy interventions succeed or fall short.
+                    </p>
+                  </div>
+                </StaggerItemUp>
+              </StaggerUpWhileInView>
+            </div>
+          </RevealWhileInView>
+
+          <RevealWhileInView from="right">
+            <div>
+              <div className="kicker">THE WORK</div>
+              <h2 className="h-serif sectionTitle" style={{ margin: "12px 0 16px" }}>
+                Rigorous enough for researchers. Accessible enough for practitioners.
+              </h2>
+
+              <StaggerUpWhileInView baseDelay={0.12}>
+                <StaggerItemUp>
+                  <div>
+                    <div style={{ display: "flex", gap: 14, alignItems: "baseline" }}>
+                      <div className="kicker">01</div>
+                      <div className="h-serif" style={{ fontSize: 22, fontWeight: 700 }}>
+                        Policy Analysis
+                      </div>
+                    </div>
+                    <p style={{ marginTop: 8, color: "var(--muted)", lineHeight: 1.9 }}>
+                      In-depth examination of development policies, finance mechanisms, and governance frameworks - grounded in evidence and focused on implementation gaps.
+                    </p>
+                  </div>
+                </StaggerItemUp>
+
+                <StaggerItemUp>
+                  <div>
+                    <div style={{ display: "flex", gap: 14, alignItems: "baseline" }}>
+                      <div className="kicker">02</div>
+                      <div className="h-serif" style={{ fontSize: 22, fontWeight: 700 }}>
+                        Commentary
+                      </div>
+                    </div>
+                    <p style={{ marginTop: 8, color: "var(--muted)", lineHeight: 1.9 }}>
+                      Timely perspectives on current developments in international development, climate policy, and global governance - written to inform and provoke constructive debate.
+                    </p>
+                  </div>
+                </StaggerItemUp>
+
+                <StaggerItemUp>
+                  <div>
+                    <div style={{ display: "flex", gap: 14, alignItems: "baseline" }}>
+                      <div className="kicker">03</div>
+                      <div className="h-serif" style={{ fontSize: 22, fontWeight: 700 }}>
+                        Research
+                      </div>
+                    </div>
+                    <p style={{ marginTop: 8, color: "var(--muted)", lineHeight: 1.9 }}>
+                      Data-driven investigations drawing on quantitative and qualitative methods to examine policy effectiveness and institutional outcomes.
+                    </p>
+                  </div>
+                </StaggerItemUp>
+              </StaggerUpWhileInView>
+            </div>
+          </RevealWhileInView>
+        </div>
+      </section>
 
       <hr className="sep" />
 
@@ -152,7 +274,7 @@ export default function HomePage() {
   style={{
     margin: "34px auto 18px",
     color: "var(--muted)",
-    fontWeight: 700,
+    fontWeight: 600,
   }}
 >
   I&apos;m always interested in discussing research collaborations, policy analysis projects, or speaking opportunities

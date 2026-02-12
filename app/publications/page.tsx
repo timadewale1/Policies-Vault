@@ -76,9 +76,8 @@ export default function PublicationsPage() {
                 fontSize: 18,
               }}
             >
-              Articles, commentaries, and policy briefs on international development
-              <br />
-              institutions and governance.
+              Policy analysis, commentary, and research briefs examining sustainable development,
+              climate finance, ESG governance, and institutional effectiveness
             </p>
           </SlideUpOnLoad>
 

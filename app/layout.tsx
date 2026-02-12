@@ -21,6 +21,11 @@ export const metadata: Metadata = {
   title: "Policies Vault",
   description:
     "Exploring international development institutions through rigorous analysis, thoughtful commentary, and evidence-based research.",
+  icons: {
+    icon: '/policy-vault.svg',
+    shortcut: '/policy-vault.svg',
+    apple: '/policy-vault.svg'
+  }
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

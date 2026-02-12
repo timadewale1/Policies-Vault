@@ -18,7 +18,7 @@ export default function Footer() {
               <Link href="/">Home</Link>
               <Link href="/about">About</Link>
               <Link href="/publications">Publications</Link>
-              <Link href="/research">Research</Link>
+              {/* <Link href="/research">Research</Link> */}
               <Link href="/contact">Contact</Link>
             </div>
           </div>
@@ -33,6 +33,10 @@ export default function Footer() {
 
         <div style={{ marginTop: 28, borderTop: "1px solid rgba(255,255,255,.12)", paddingTop: 18, fontSize: 13, opacity: 0.7, textAlign: "center" }}>
           © {new Date().getFullYear()} Policies Vault
+
+          <div style={{ marginTop: 8, fontSize: 13, opacity: 0.85 }}>
+            Policies Vault is an independent policy analysis platform. Gift Nwamadu, MPhil Public Policy, University of Cambridge.
+          </div>
         </div>
       </div>
     </footer>
