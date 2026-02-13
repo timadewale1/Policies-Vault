@@ -23,7 +23,7 @@ export default function Navbar() {
           className="h-serif"
           style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 20, fontWeight: 700 }}
         >
-          <img src="/policy-vault.svg" alt="Policy Vault logo" style={{ width: 40, height: 40, display: "block" }} />
+          <img src="/policy-vault.svg" alt="Policy Vault logo" style={{ width: 60, height: 60, display: "block" }} />
           <span>Policies Vault</span>
         </Link>
 
@@ -54,12 +54,6 @@ export default function Navbar() {
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.25 }}
           >
-            <div style={{ padding: 12, borderBottom: "1px solid rgba(47,36,32,.06)" }}>
-              <Link href="/" onClick={() => setOpen(false)} style={{ display: "inline-flex", alignItems: "center", gap: 8, fontWeight: 700 }}>
-                <img src="/policy-vault.svg" alt="Policy Vault logo" style={{ width: 40, height: 40, display: "block" }} />
-                <span style={{ fontSize: 16 }}>Policies Vault</span>
-              </Link>
-            </div>
             {nav.map((i) => (
               <Link
                 key={i.href}
