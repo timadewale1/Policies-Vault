@@ -6,7 +6,10 @@ export default function Footer() {
       <div className="container" style={{ padding: "44px 0" }}>
         <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr 1fr", gap: 30 }}>
           <div>
-            <div className="h-serif" style={{ fontSize: 24, fontWeight: 600 }}>Policies Vault</div>
+            <div className="h-serif" style={{ display: "flex", alignItems: "center", gap: 10, fontSize: 20, fontWeight: 600 }}>
+              <img src="/policy-vault.svg" alt="Policy Vault logo" style={{ width: 28, height: 28 }} />
+              <span>Policies Vault</span>
+            </div>
             <p style={{ marginTop: 10, maxWidth: 360, opacity: 0.85, fontSize: 15, lineHeight: 1.7 }}>
               Analysis and commentary on international development institutions and evidence-based policy.
             </p>
