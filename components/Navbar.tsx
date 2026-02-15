@@ -23,7 +23,7 @@ export default function Navbar() {
           className="h-serif"
           style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 20, fontWeight: 700 }}
         >
-          <img src="/policy-vault.svg" alt="Policy Vault logo" style={{ width: 60, height: 60, display: "block" }} />
+          <img src="/policy-vault.png" alt="Policy Vault logo" style={{ width: 70, height: 70, display: "block" }} />
           <span>Policies Vault</span>
         </Link>
 

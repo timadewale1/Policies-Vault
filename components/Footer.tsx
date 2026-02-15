@@ -7,7 +7,7 @@ export default function Footer() {
         <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr 1fr", gap: 30 }}>
           <div>
             <div className="h-serif" style={{ display: "flex", alignItems: "center", gap: 10, fontSize: 20, fontWeight: 600 }}>
-              <img src="/policy-vault.svg" alt="Policy Vault logo" style={{ width: 60, height: 60 }} />
+              <img src="/policy-vault.png" alt="Policy Vault logo" style={{ width: 70, height: 70 }} />
               <span>Policies Vault</span>
             </div>
             <p style={{ marginTop: 10, maxWidth: 360, opacity: 0.85, fontSize: 15, lineHeight: 1.7 }}>

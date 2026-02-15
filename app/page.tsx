@@ -26,9 +26,9 @@ export default function HomePage() {
               READ PUBLICATIONS <span aria-hidden>→</span>
             </Link>
 
-          <div style={{ height: 34 }} />
+          <div style={{ height: 50 }} />
 
-          <div className="card" style={{ margin: "0 auto", maxWidth: 1020 }}>
+          <div className="card" style={{ margin: "0 auto", maxWidth: 900 }}>
   <div
     className="heroImg"
     style={{

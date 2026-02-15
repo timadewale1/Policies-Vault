@@ -1,13 +1,13 @@
 :root{
   /* pulled to match your video vibe */
-  --bg: #e9e2d8;
-  --surface: #efe8df;
-  --sage: #cfd9a7;
-  --text: #2f2420;
-  --muted: #6b5b55;
-  --brown: #3b2722;
-  --brown-2: #2b1b17;
-  --border: rgba(47,36,32,.16);
+ --bg: #e6efff;
+--surface: #edf3ff;
+--sage: #8fb3ff;
+--text: #1a2a4f;
+--muted: #667bb3;
+--brown: #243c7a;
+--brown-2: #16285a;
+--border: rgba(26,42,79,.16);
 
   --radius-xl: 26px;
   --radius-lg: 18px;

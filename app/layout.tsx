@@ -22,9 +22,9 @@ export const metadata: Metadata = {
   description:
     "Exploring international development institutions through rigorous analysis, thoughtful commentary, and evidence-based research.",
   icons: {
-    icon: '/policy-vault.svg',
-    shortcut: '/policy-vault.svg',
-    apple: '/policy-vault.svg'
+    icon: '/policy-vault.png',
+    shortcut: '/policy-vault.png',
+    apple: '/policy-vault.png'
   }
 };
 
