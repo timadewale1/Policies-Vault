@@ -133,6 +133,11 @@ hr.sep{
   line-height: 1.02;
 }
 
+.sectionTitleSmall{
+  font-size: 48px;
+  line-height: 1.02;
+}
+
 .sectionLead{
   font-size: 14px;
   line-height: 1.85;

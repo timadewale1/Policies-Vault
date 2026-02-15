@@ -49,7 +49,7 @@ export default function HomePage() {
             <div>
               <div className="kicker">WHY THIS EXISTS</div>
 
-              <h2 className="h-serif sectionTitle" style={{ margin: "12px 0 16px" }}>
+              <h2 className="h-serif sectionTitleSmall" style={{ margin: "12px 0 16px" }}>
   Rigorous Thinking. Real-World Relevance
 </h2>
 
@@ -136,7 +136,7 @@ export default function HomePage() {
           <RevealWhileInView from="left">
             <div>
               <div className="kicker">FOCUS AREAS</div>
-              <h2 className="h-serif sectionTitle" style={{ margin: "12px 0 16px" }}>
+              <h2 className="h-serif sectionTitleSmall" style={{ margin: "12px 0 16px" }}>
                 Analysis spanning several interconnected policy domains.
               </h2>
 
@@ -203,7 +203,7 @@ export default function HomePage() {
           <RevealWhileInView from="right">
             <div>
               <div className="kicker">THE WORK</div>
-              <h2 className="h-serif sectionTitle" style={{ margin: "12px 0 16px" }}>
+              <h2 className="h-serif sectionTitleSmall" style={{ margin: "12px 0 16px" }}>
                 Rigorous enough for researchers. Accessible enough for practitioners.
               </h2>
 
