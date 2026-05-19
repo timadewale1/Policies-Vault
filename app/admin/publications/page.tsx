@@ -7,10 +7,14 @@ import {
   removePublication,
   updatePublication,
 } from "@/lib/firebase/adminCrud";
+import { useToast } from "@/components/ToastProvider";
+import { generateAndDownloadPdf } from "@/lib/pdfGenerator";
 
 export default function AdminPublicationsPage() {
+  const toast = useToast();
   const [items, setItems] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [downloadingId, setDownloadingId] = useState<string | null>(null);
 
   async function load() {
     setLoading(true);
@@ -35,6 +39,24 @@ export default function AdminPublicationsPage() {
     if (!confirm("Delete this publication?")) return;
     await removePublication(id);
     await load();
+  }
+
+  async function handleDownloadPdf(pub: any) {
+    setDownloadingId(pub.id);
+    try {
+      await generateAndDownloadPdf({
+        title: pub.title || "Untitled",
+        content: pub.content || "",
+        type: pub.type,
+        status: pub.status,
+        contentFormat: pub.contentFormat,
+      });
+      toast.success("PDF downloaded!");
+    } catch (err: any) {
+      toast.error(err?.message ?? "Failed to generate PDF");
+    } finally {
+      setDownloadingId(null);
+    }
   }
 
   return (
@@ -75,6 +97,21 @@ export default function AdminPublicationsPage() {
 
                   {/* right: actions */}
                   <div className="adminActions">
+                    {p.contentFormat !== "pdf" && p.content && (
+                      <button
+                        className="pill adminActionBtn"
+                        onClick={() => handleDownloadPdf(p)}
+                        disabled={downloadingId === p.id}
+                        type="button"
+                        style={{
+                          opacity: downloadingId === p.id ? 0.6 : 1,
+                          cursor: downloadingId === p.id ? "not-allowed" : "pointer",
+                        }}
+                      >
+                        {downloadingId === p.id ? "…" : "PDF"}
+                      </button>
+                    )}
+
                     <button
                       className="pill adminActionBtn"
                       onClick={() => togglePublish(p.id, p.status)}

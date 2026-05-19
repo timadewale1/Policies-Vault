@@ -11,6 +11,8 @@ import {
   where,
 } from "firebase/firestore";
 import { db } from "@/lib/firebase/client";
+import { useToast } from "@/components/ToastProvider";
+import { generateAndDownloadPdf } from "@/lib/pdfGenerator";
 
 type Filter = "All" | "Article" | "Commentary" | "Brief" | "Analysis";
 
@@ -23,6 +25,8 @@ type PubDoc = {
   status?: string;
   coverImageUrl?: string | null;
   publishedAt?: any;
+  content?: string | null;
+  contentFormat?: "markdown" | "html" | "pdf";
 };
 
 export default function PublicationsPage() {
@@ -143,10 +147,31 @@ export default function PublicationsPage() {
 
 function PublicationCard({ item }: { item: PubDoc }) {
   const href = item.slug ? `/publications/${item.slug}` : `/publications/${item.id}`;
+  const toast = useToast();
+  const [downloadingPdf, setDownloadingPdf] = useState(false);
+
+  const handleDownloadPdf = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDownloadingPdf(true);
+    try {
+      await generateAndDownloadPdf({
+        title: item.title || "Untitled",
+        content: item.content || "",
+        type: item.type,
+        status: "published",
+        contentFormat: item.contentFormat,
+      });
+      toast.success("PDF downloaded!");
+    } catch (err: any) {
+      toast.error(err?.message ?? "Failed to generate PDF");
+    } finally {
+      setDownloadingPdf(false);
+    }
+  };
 
   return (
-    <Link
-      href={href}
+    <div
       className="card"
       style={{
         display: "grid",
@@ -165,30 +190,70 @@ function PublicationCard({ item }: { item: PubDoc }) {
         />
       ) : null}
 
-      <div style={{ padding: 18 }}>
-        <div className="kicker" style={{ marginBottom: 10 }}>
-          {(item.type ?? "Publication").toUpperCase()}
+      <div style={{ padding: 18, display: "grid", gridTemplateRows: "1fr auto" }}>
+        <div>
+          <div className="kicker" style={{ marginBottom: 10 }}>
+            {(item.type ?? "Publication").toUpperCase()}
+          </div>
+
+          <Link
+            href={href}
+            style={{
+              textDecoration: "none",
+              color: "inherit",
+            }}
+          >
+            <div className="h-serif" style={{ fontSize: 22, fontWeight: 700, lineHeight: 1.15 }}>
+              {item.title ?? "Untitled"}
+            </div>
+
+            {item.excerpt ? (
+              <p style={{ margin: "10px 0 0", color: "rgba(47,36,32,.72)", lineHeight: 1.85, fontSize: 14 }}>
+                {item.excerpt}
+              </p>
+            ) : null}
+          </Link>
         </div>
 
-        <div className="h-serif" style={{ fontSize: 22, fontWeight: 700, lineHeight: 1.15 }}>
-          {item.title ?? "Untitled"}
-        </div>
-
-        {item.excerpt ? (
-          <p style={{ margin: "10px 0 0", color: "rgba(47,36,32,.72)", lineHeight: 1.85, fontSize: 14 }}>
-            {item.excerpt}
-          </p>
-        ) : null}
-
-        <div style={{ height: 12 }} />
-        <div style={{ display: "flex", justifyContent: "space-between", gap: 12, alignItems: "center" }}>
-          <span style={{ fontSize: 13, color: "rgba(47,36,32,.65)" }}>{formatDate(item.publishedAt)}</span>
-          <span style={{ fontSize: 18, color: "rgba(47,36,32,.65)" }} aria-hidden>
-            →
-          </span>
+        <div>
+          <div style={{ height: 12 }} />
+          <div style={{ display: "flex", justifyContent: "space-between", gap: 12, alignItems: "center" }}>
+            <span style={{ fontSize: 13, color: "rgba(47,36,32,.65)" }}>{formatDate(item.publishedAt)}</span>
+            <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+              {item?.contentFormat !== "pdf" && item?.content && (
+                <button
+                  onClick={handleDownloadPdf}
+                  disabled={downloadingPdf}
+                  style={{
+                    padding: "6px 10px",
+                    backgroundColor: "rgba(47, 36, 32, 0.08)",
+                    border: "1px solid rgba(47, 36, 32, 0.18)",
+                    color: "rgba(47, 36, 32, 0.8)",
+                    cursor: downloadingPdf ? "not-allowed" : "pointer",
+                    fontSize: 12,
+                    fontWeight: 600,
+                  }}
+                  title="Download as PDF"
+                >
+                  {downloadingPdf ? "…" : "PDF"}
+                </button>
+              )}
+              <Link
+                href={href}
+                style={{
+                  fontSize: 18,
+                  color: "rgba(47,36,32,.65)",
+                  textDecoration: "none",
+                }}
+                aria-hidden
+              >
+                →
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
-    </Link>
+    </div>
   );
 }
 

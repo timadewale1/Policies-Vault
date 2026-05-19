@@ -28,7 +28,7 @@ export default function AdminDashboard() {
 
         <div className="adminStatsGrid">
           <Stat label="Publications" value={counts.pubs} />
-          <Stat label="Research" value={counts.research} />
+          {/* <Stat label="Research" value={counts.research} /> */}
           <Stat label="Messages" value={counts.messages} />
         </div>
 
