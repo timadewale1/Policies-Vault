@@ -16,8 +16,8 @@ export default function PublicationForm({
   onSave: (payload: any) => Promise<void>;
 }) {
   const toast = useToast();
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
   const contentEditableRef = useRef<HTMLDivElement>(null);
-  const [isInitialized, setIsInitialized] = useState(false);
 
   const [title, setTitle] = useState(initial?.title ?? "");
   const [type, setType] = useState<PubType>(initial?.type ?? "Article");
@@ -31,78 +31,59 @@ export default function PublicationForm({
 
   const [saving, setSaving] = useState(false);
 
-  // Initialize contenteditable with initial content
-  useEffect(() => {
-    if (contentEditableRef.current && !isInitialized && initial?.content) {
-      contentEditableRef.current.innerHTML = initial.content;
-      setIsInitialized(true);
-    }
-  }, [initial?.content, isInitialized]);
+  // For markdown: insert text at cursor position
+  const insertMarkdownFormatting = (prefix: string, suffix: string = prefix) => {
+    const textarea = textareaRef;
+    if (!textarea?.current) return;
 
-  // Insert actual formatting using contenteditable
-  const insertFormattingAtCursor = (prefix: string, suffix: string = prefix) => {
-    const editor = contentEditableRef.current;
-    if (!editor) return;
+    const start = textarea.current.selectionStart;
+    const end = textarea.current.selectionEnd;
+    const selectedText = content.substring(start, end) || "text";
+    const beforeText = content.substring(0, start);
+    const afterText = content.substring(end);
 
-    const selection = window.getSelection();
-    if (!selection || selection.rangeCount === 0) return;
+    const newContent = `${beforeText}${prefix}${selectedText}${suffix}${afterText}`;
+    setContent(newContent);
 
-    const range = selection.getRangeAt(0);
-    const selectedText = range.toString() || "text";
-
-    // Create text node with formatting
-    const beforeText = document.createTextNode(prefix);
-    const textNode = document.createTextNode(selectedText);
-    const afterText = document.createTextNode(suffix);
-
-    range.deleteContents();
-    range.insertNode(afterText);
-    range.insertNode(textNode);
-    range.insertNode(beforeText);
-
-    // Update the state
-    if (editor) {
-      setContent(editor.innerHTML);
-    }
-
-    // Re-focus
-    editor.focus();
+    // Restore cursor position
+    setTimeout(() => {
+      const newCursorPos = start + prefix.length + selectedText.length;
+      textarea.current?.focus();
+      textarea.current?.setSelectionRange(newCursorPos, newCursorPos);
+    }, 0);
   };
 
-  const insertFormatting = (command: string, value?: string) => {
-    if (contentFormat === "markdown") {
-      // For markdown, insert markdown syntax
-      switch (command) {
-        case "bold":
-          insertFormattingAtCursor("**", "**");
-          break;
-        case "italic":
-          insertFormattingAtCursor("*", "*");
-          break;
-        case "underline":
-          insertFormattingAtCursor("__", "__");
-          break;
-      }
-    } else {
-      // For HTML, use execCommand
-      document.execCommand(command, false, value);
-      contentEditableRef.current?.focus();
-    }
+  // For HTML: use contenteditable formatting
+  const insertHtmlFormatting = (command: string, value?: string) => {
+    document.execCommand(command, false, value);
+    contentEditableRef.current?.focus();
   };
 
   const addBold = () => {
-    insertFormatting("bold");
+    if (contentFormat === "markdown") {
+      insertMarkdownFormatting("**", "**");
+    } else {
+      insertHtmlFormatting("bold");
+    }
   };
 
   const addItalic = () => {
-    insertFormatting("italic");
+    if (contentFormat === "markdown") {
+      insertMarkdownFormatting("*", "*");
+    } else {
+      insertHtmlFormatting("italic");
+    }
   };
 
   const addUnderline = () => {
-    insertFormatting("underline");
+    if (contentFormat === "markdown") {
+      insertMarkdownFormatting("__", "__");
+    } else {
+      insertHtmlFormatting("underline");
+    }
   };
 
-  const handleContentChange = (e: React.FormEvent<HTMLDivElement>) => {
+  const handleHtmlContentChange = (e: React.FormEvent<HTMLDivElement>) => {
     const html = (e.currentTarget as HTMLDivElement).innerHTML;
     setContent(html);
   };
@@ -215,7 +196,13 @@ export default function PublicationForm({
             <AdminSelect
               ariaLabel="Select body format"
               value={contentFormat}
-              onChange={(v) => setContentFormat(v as any)}
+              onChange={(v) => {
+                setContentFormat(v as any);
+                // Initialize contenteditable if switching to HTML
+                if (v === "html" && contentEditableRef.current && content) {
+                  contentEditableRef.current.innerHTML = content;
+                }
+              }}
               options={["markdown", "html", "pdf"]}
             />
           </label>
@@ -300,19 +287,30 @@ export default function PublicationForm({
                 </button>
               </div>
             </div>
-            <div
-              ref={contentEditableRef}
-              contentEditable
-              onInput={handleContentChange}
-              suppressContentEditableWarning
-              style={{
-                ...inputStyle,
-                minHeight: 240,
-                whiteSpace: "pre-wrap",
-                wordWrap: "break-word",
-                overflow: "auto",
-              }}
-            />
+
+            {contentFormat === "markdown" ? (
+              <textarea
+                ref={textareaRef}
+                style={{ ...inputStyle, minHeight: 240 }}
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
+                placeholder="Write markdown...\n\n**bold** *italic* __underline__\n\n# Heading 1\n## Heading 2"
+              />
+            ) : (
+              <div
+                ref={contentEditableRef}
+                contentEditable
+                onInput={handleHtmlContentChange}
+                suppressContentEditableWarning
+                style={{
+                  ...inputStyle,
+                  minHeight: 240,
+                  whiteSpace: "pre-wrap",
+                  wordWrap: "break-word",
+                  overflow: "auto",
+                }}
+              />
+            )}
           </label>
         ) : (
           <p style={{ margin: 0, color: "var(--muted)", lineHeight: 1.8 }}>
